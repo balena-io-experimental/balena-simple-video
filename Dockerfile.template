@@ -1,0 +1,9 @@
+# vi: ft=dockerfile
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-stretch-run
+
+ENV UDEV=1
+RUN install_packages omxplayer
+ENV VIDEO http://s1.demo-world.eu/hd_trailers.php?file=thx_amazing_life-DWEU.mkv
+ADD $VIDEO /video.mkv
+
+CMD ["omxplayer", "--display=5", "--genlog", "--loop", "/video.mkv"]
